@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/mcp-config.schema.json",
+  "mcpServers": {
+    "dataful": {
+      "command": "${workspaceFolder}/mcp/dataful-mcp/target/release/dataful-mcp",
+      "env": {
+        "RUST_LOG": "dataful_mcp=info"
+      },
+      "description": "MCP server for testing and verifying Dataful application"
+    }
+  }
+}

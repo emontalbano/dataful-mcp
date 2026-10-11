@@ -1,0 +1,70 @@
+[package]
+name = "dataful-mcp"
+version = "0.1.0"
+edition = "2021"
+description = "MCP server for testing and verifying Dataful application"
+license = "MIT"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# WebSocket for CDP
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+futures-util = "0.3"
+
+# JSON handling
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# HTTP client for CDP discovery
+reqwest = { version = "0.11", features = ["json"] }
+
+# Process discovery
+sysinfo = "0.30"
+
+# Base64 for screenshots
+base64 = "0.21"
+
+# Error handling
+thiserror = "1"
+anyhow = "1"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Async channels
+async-channel = "2"
+
+# UUID for request tracking
+uuid = { version = "1", features = ["v4"] }
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61.3", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_System_Com",
+  "Win32_System_Ole",
+  "Win32_System_Variant",
+  "Win32_UI_Accessibility",
+  "Win32_UI_WindowsAndMessaging",
+] }
+windows-core = "0.61.2"
+windows-sys = { version = "0.59", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_Graphics_Gdi",
+  "Win32_Storage_FileSystem",
+  "Win32_Storage_Xps",
+  "Win32_System_LibraryLoader",
+  "Win32_System_Threading",
+  "Win32_UI_WindowsAndMessaging",
+  "Win32_UI_Input_KeyboardAndMouse",
+  "Win32_UI_Accessibility",
+] }
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
